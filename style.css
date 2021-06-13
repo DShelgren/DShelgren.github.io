@@ -1,0 +1,14 @@
+
+body {
+    background-image: radial-gradient(circle at 100%, rgb(3, 65, 122), rgb(0, 75, 144) 50%, #eee 75%, rgb(139, 139, 139) 75%)
+
+/* background image gradient, of type radial (position, colors from center out as defined by percentage of circle */ 
+}
+
+.button {
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 4px 4px black;
+}

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--UATspace page
+Written by Dennis Shelgren
+denshelg@uat.edu
+19May2021-->
+
+<!--Tile for Casino
+This is the End of the Line Club from both Tron movies, although barely touched on
+in the original it was featured in the sequel Tron Legacy.
+Here was were programs of all kinds could enjoy anything their energy could
+afford-->
+
+<!--Beginning of HTML section-->
+<html>
+<!--Header section, titles-->
+
+<head>
+
+    <!--link to css style sheet, w/relationship and type-->
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <!--link from this html to external file code.js-->
+
+    <script src="code.js"></script>
+    <!-- link to dataloader-1.js for data set-->
+    <script src="dataLoader-1.js"></script>
+
+    <!--Title of page, btw Nebulous is my nickname-->
+    <title>
+        Nebulous's Space Page
+    </title>
+</head>
+
+<body>
+    <!--needed for the DOM-->
+    <script> //inline JavaScript begins
+        //create some needed variables
+        var theTime = new Date(); //Define variable the time as new class of type Date
+        var tempTime = new Date(); //Define variable temp Time as new class of type Date
+        var time_interval = 5000; //Set variable time interval as 5000ms or 5 seconds
+        var last_iteration = 0; //set variable last interation as 0
+        var running = true; //set running variable as boolean true
+        var index = 0; //initialize variable index as 0, aka start value
+        var timer; //set variable named timer
+
+        //to getData for our table
+        var data = getData();
+
+ //assign variable data to output from function getData()
+        //data from dataloader() to our table
+        function updateDisplay(){ //begin definition of function updateDisplay
+            theTime = new Date(); //set variable theTime as a new class of Date function
+
+            //fill in the table itself
+            var timeRead = data[index].time_seconds; //define timeRead as data array element of seconds
+            if(timeRead >= 10){ //start if, condition of timeRead greater or equal to 10
+                document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds, "seconds");
+                // call dataRow function to insert into html information from data array, via index & label time_seconds
+                document.getElementById("data").rows["latitude"].innerHTML = dataRow("Latitude", data[index].latitude, " ");
+                // call dataRow function to insert into html information from data array, via index & label latitude
+                document.getElementById("data").rows["longitude"].innerHTML = dataRow("Longitude", data[index].longitude, " ");
+                // call dataRow function to insert into html information from data array, via index & label longitude
+                document.getElementById("data").rows["gps_altitude"].innerHTML = dataRow("GPS altitude", data[index].gps_altitude, " ");
+                // call dataRow function to insert into html information from data array, via index & label gps_altitude
+                document.getElementById("data").rows["bmpSensor_altitude"].innerHTML = dataRow("bmpSensor_altitude", data[index].bmpSensor_altitude, " ");
+                // call dataRow function to insert into html information from data array, via index & label bmpSensor_altitude
+                document.getElementById("data").rows["bmpSensor_pressure"].innerHTML = dataRow("bmpSensor_pressure", data[index].bmpSensor_pressure, " ");
+                // call dataRow function to insert into html information from data array, via index & label bmpSensor_pressure
+                document.getElementById("data").rows["bmpSensor_temp"].innerHTML = dataRow("bmpSensor_temp", data[index].bmpSensor_temp, " ");
+                // call dataRow function to insert into html information from data array, via index & label bmpSensor_temp
+                document.getElementById("data").rows["digSensor_temp"].innerHTML = dataRow("digSensor_temp", data[index].digSensor_temp, " ");
+                // call dataRow function to insert into html information from data array, via index & label digSensor_temp
+                document.getElementById("data").rows["cssSensor_temp"].innerHTML = dataRow("cssSensor_temp", data[index].cssSensor_temp, " ");
+                // call dataRow function to insert into html information from data array, via index & label cssSensor_temp
+                document.getElementById("data").rows["cssSensor_eCO2"].innerHTML = dataRow("cssSensor_eCO2", data[index].cssSensor_eCO2, " ");
+                // call dataRow function to insert into html information from data array, via index & label cssSensor_eCO2
+                document.getElementById("data").rows["cssSensor_TVOC"].innerHTML = dataRow("cssSensor_TVOC", data[index].cssSensor_TVOC, " ");
+                // call dataRow function to insert into html information from data array, via index & label cssSensor_TVOC
+                document.getElementById("data").rows["UV"].innerHTML = dataRow("UV", data[index].UV, " ");
+                // call dataRow function to insert into html information from data array, via index & label UV
+                document.getElementById("data").rows["accelX"].innerHTML = dataRow("accelX", data[index].accelX, " ");
+                // call dataRow function to insert into html information from data array, via index & label accelX
+                document.getElementById("data").rows["accelY"].innerHTML = dataRow("accelY", data[index].accelY, " ");
+                // call dataRow function to insert into html information from data array, via index & label accelY
+                document.getElementById("data").rows["accelZ"].innerHTML = dataRow("accelZ", data[index].accelZ, " ");
+                // call dataRow function to insert into html information from data array, via index & label accelZ
+                document.getElementById("data").rows["magneticX"].innerHTML = dataRow("magneticX", data[index].magneticX, " ");
+                // call dataRow function to insert into html information from data array, via index & label magneticX
+                document.getElementById("data").rows["magneticY"].innerHTML = dataRow("magneticY", data[index].magneticY, " ");
+                // call dataRow function to insert into html information from data array, via index & label magneticY
+                document.getElementById("data").rows["magneticZ"].innerHTML = dataRow("magneticZ", data[index].magneticZ, " ");
+                // call dataRow function to insert into html information from data array, via index & label magneticZ
+                document.getElementById("data").rows["gyroX"].innerHTML = dataRow("gyroX", data[index].gyroX, " ");
+                // call dataRow function to insert into html information from data array, via index & label gyroX
+                document.getElementById("data").rows["gyroY"].innerHTML = dataRow("gyroY", data[index].gyroY, " ");
+                // call dataRow function to insert into html information from data array, via index & label gyroY
+                document.getElementById("data").rows["gyroZ"].innerHTML = dataRow("gyroZ", data[index].gyroZ, " ");
+                // call dataRow function to insert into html information from data array, via index & label gyroZ
+            }
+            if(index<500){ //if loop to run till 499
+                index++; //increment index
+            } else {
+                index = 0; //if loop ran past 499, reset
+            }
+        };
+    </script> <!--end of Javascrip inline code, this is why there's two comment styles-->
+    <!--making a table to hold h1 and picture-->
+    <table>
+        <td><img src="UATspaceLogo-2.jpg"> </td>
+        <!--Display image from source jpg-->
+        <td>
+            <h1>
+                UAT Space Program
+                <!--Header size 1, largest size-->
+            </h1>
+        </td>
+    </table>
+    <!--make table with border size 2, width of 70% of page-->
+    <table border="2" width="70%" id = "data">
+        
+        </tr>
+        <col style="width: 35% ;">
+        <!--set column width to 35%-->
+        <col style="width: 35% ;">
+        <!--set second column width to 35% aka equal sizes-->
+        <tr>
+            <!--start table head-->
+        <tr style="font-family: fantasy;">
+            <th>Data Type</th>
+            <!--header labels first column Data Type-->
+            <th>Reading</th>
+            <!--header label second column Reading-->
+        </tr>
+        </thead>
+        <!--end of table header section-->
+        <tbody >
+            <!--begin body data of table-->
+            <tr id="seconds"></tr><!--table row id of seconds-->
+               
+
+            <tr id="latitude"></tr> <!-- table row id of latitude-->
+             
+
+            <tr id="longitude"></tr> <!--table row id of longitude-->
+           
+
+            <tr id="gps_altitude"></tr><!--table row id of gps altitude-->
+                
+
+            <tr id="bmpSensor_altitude"></tr><!--table row id of bmp sensor altitude-->
+             
+
+            <tr id="bmpSensor_pressure"></tr><!--table row id of bmp sensor pressure-->
+             
+
+            <tr id="bmpSensor_temp"></tr><!--table row id of bmp sensor temperature-->
+            
+
+            <tr id="digSensor_temp"></tr><!--table row id of digital sensor temperature-->
+            
+
+            <tr id="cssSensor_temp"></tr><!--table row id of css sensor temp-->
+            
+
+            <tr id="cssSensor_eCO2"></tr><!--table row id of css sensor eCO2-->
+               
+
+            <tr id="cssSensor_TVOC"></tr><!--table row id of css sensor TVOC-->
+               
+
+            <tr id="UV"></tr><!--table row id of UV-->
+             
+
+            <tr id="accelX"></tr><!--table row id of Accelerometer X-->
+               
+
+            <tr id="accelY"></tr><!--table row id of Accelerometer Y -->
+              
+
+            <tr id="accelZ"></tr><!--table row id of Accelerometer Z-->
+               
+
+            <tr id="magneticX"></tr><!--table row id of Magnetic sensor X-->
+            
+
+            <tr id="magneticY"></tr><!--table row id of Magnetic sensor Y-->
+               
+
+            <tr id="magneticZ"></tr><!--table row id of Magnetic sensor Z-->
+              
+
+            <tr id="gyroX"></tr><!--table row id of Gryroscope X-->
+              
+
+            <tr id="gyroY"></tr><!--table row id of Gyroscope Y-->
+             
+
+            <tr id="gyroZ"></tr><!--table row id of Gyroscope Z-->
+            
+
+        </tbody> <!--end of table body entries-->
+    </table> <!--end of table definition-->
+
+
+
+
+
+
+
+
+    <!--Paragraph id link to countdownTimer function-->
+    <p id="countdownTimer">Countdown Status...</p>
+    <!--Button tag to show Start and Stop Buttons-->
+    <!--Start button onclick call to startButton function-->
+    <button class="button" id="startButton" onclick="start();">Start</button>
+    <!--stop button onclick call to stopButton function-->
+    <button class="button" id="stopButton" onclick="stop();">Stop</button>
+    <!-- break/newlines for space-->
+    <br><br>
+    <!--play sound button to refer to function playStation-->
+    <button class="button" onclick="playStation();">Play Sound</button><br>
+    <!--play other button to refer to function playOther-->
+    <button class="button" onclick="playOther();">Play Other</button>
+      <br>
+    <!--Break line aka newline-->
+    <br>
+
+
+    <p> The End of the Line Club presents<br> The Game of Craps<br> A land where the individual programs of Tron<br> Can
+        experience all the joys available to the world of the living.<br>Including games of chance like dice games.<br>
+        Please press Play Craps to play<br></p>
+    <!--Paragraph call to describe story of Craps game-->
+    <div id="die1Results">Die1 status...</div><br>
+    <!--Status print of function die1Results from javascript Craps game function-->
+    <div id="die2Results">Die2 status...</div><br>
+    <!--Status print of function die2Results from javascript Craps game funciton-->
+    <div id="sumResults">Sum status...</div><br>
+    <!--Status print of function sumResults from javascript Craps game function-->
+    <div id="crapsResults">Craps game status</div><br> <!-- Display results crapsResults from javascript-->
+    <button class="button" onclick="playCraps();">Play Craps</button>
+    <!-- Display button on website to call Javascript function playCraps()-->
+
+    <img src="end-of-line-club.jpg" align="right"> <!-- Display image at right side of screen from End-Of-Line-Club-->
+
+
+<br><br>
+<button class="button" onclick = "indexTrans();">Go to index</button>
+<button class="button" onclick = "objTrans();">Objectives</button>
+
+
+</body>
+<!--End of body section of html file-->
+
+</html>
+<!--End of html code-->

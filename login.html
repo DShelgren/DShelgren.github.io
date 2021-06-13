@@ -1,0 +1,29 @@
+<!DOCTYPE html>  <!-- document type declaration aka it's a webpage-->
+<html> <!-- beginning of html tag -->
+
+<head> <!-- beginning of head tag-->
+    <script src = "loginCode.js"></script> <!-- linking of JavaScript code-->
+    <title> <!-- beginning of title tag block-->
+        UATspace login page <!-- Well this is the page title for the tabs on most browsers-->
+    </title> <!--End of title block-->
+</head> <!--End of head block-->
+
+<body> <!-- Now were into the body of things, tagged for this block-->
+    <h1> <!-- Header size max, h1 other numbers for descending bigness -->
+        Welcome to the UATspace login page, please log in.<!--Initial user viewed text-->
+    </h1> <!--End of header/title-->
+
+    <p id="loginStatus"> <!--Paragraph definition linked to function loginStatus-->
+        Status of login...<!--Label text of routed information-->
+    </p>
+
+    <form id="creditSubmit" onsubmit="return false"> <!--Beginning of input form for user data-->
+        First name:     <input type="text" id="fName" /> <br> <!--First input box of First Name-->
+        Last name:     <input type="text" id="lName" /> <br> <!-- Last name input box-->
+        Badge Number:    <input type="number" id="badgeID" /> <br> <!--user input box for user badge number-->
+        <input type="submit" onclick="checkCreds();" /> <!--Submit box for activating the form check functionn checkCreds()-->
+    </form> <!--The form is complete, time to close it up-->
+</body><!--The end of the body blockk of the html code-->
+
+
+</html><!--The end of the html section-->
